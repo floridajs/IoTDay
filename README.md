@@ -1,39 +1,57 @@
-  <img src="http://nodebots.io/img/equation.png" align="center">
+![iotdays logo](/iotdays.png)
 
-# NodeBotDays
-You'll find our Installation notes &amp; Start up script for our annual NodeBotDays Event
-
-
-Welcome to Our annual BocaJS NodeBot Days event.
-
-It's usually on the last saturday in July.
-
-In this repo you'll find an example file that's ready for you to go.
-
-ONCE you've flashed your "Arduino" Device (we're using ESP8266 D1 R2 Mini) 
-(Follow these instructions if you haven't, steps 1-4  http://www.instructables.com/id/ESP8266-Firmata-J5-NodeBot/ )
-The files (if you know what you're doing, or follow the above advice) is included in a directory here called "ESP8266 Firmware"
-
-Or if you've already had someone flash it for you, then you're ready to go.
-
-Note the instructions are different for Mac and Windows (linux follow Mac's instructions) but only because there was an extra step in windows for which I did some work already for you.
-
-- Clone this repo ( git clone https://github.com/bocajs/NodeBotDays.git )
-- If you're in windows (mac ignore this ) go into the "Windows directory"
-- If you're in a Mac (Windows ignore this) run: npm i
-- Now edit the johnnyFiveSample.js and CHANGE the IP value: "192.168.29.50" to what matches your device and save the file.
-- You're done. Run it by running "node johnnyFiveSample.js"
-It should now show something line this:<BR />
-
-1531436035013 SerialPort Connecting to host:port: 192.168.29.50:3030<BR />
-1531436035016 Connected Connecting to host:port: 192.168.29.50:3030<BR />
-READY!<BR />
-IT'S BLINKING!!!<BR />
+# FloridaJS official IoT Days Repo
 
 
 
-You're good to go. Now get some sensors, lights, resistors and get playing.
-Some good examples and documentation can be found at: http://johnny-five.io/examples/
+## What is it?
+The FLorida IoT Days has been going on for the last 6 years. <br>
+Originally started by [MiamiJS](https://miamijs.com) back in 2016 as part of the global [NodeBot Days](https://nodebots.io/#nodebots-day). <br>
+We have been making blinking lights in the real world while writting NodeJS/Javascript for a long time and it's still continuing.
 
+## How to get started
+We usually have kits you can use that include:
+- a ESP8266 board (flashed )
+- bread board
+- LED Lights (many)
+- switches
+- dimmers (variable resisters)
+- Lots of wires
+We make them do magical things!
 
+## Why we use "Espruino"
+Originally we were using the [Johnny Five Framework](http://johnny-five.io/) to make our laptops running node connect and control arduion devices to blink those lines.<br>
+But we have since then changed to "Espruino" because it's real javascript running on the actual micro controllers.<br>
+We have kept our code and notes if you wish to follow the way we use to do it and kept them in our [johnny five Repo](./johnny-five_Library/) should you wish to use it or check what we use to use.
 
+## Espruino links
+[Espruino IDE](https://www.espruino.com/ide/)
+
+## Flashing your ESP8266 board
+Sometimes we want the latest Espruino Software running on our ESP8266 or ESP32 devices.
+
+To achieve this we need a couple of things.
+- [ESPTOOL Application](https://github.com/espressif/esptool/releases)
+- [Latest Espruino firmare](http://www.espruino.com/Download)
+
+You'll need to download the ESPTool for your OS (if it's linux or Mac make sure to ```chmod a+x esptool``` to make the binary  executable)
+
+Then the serial port that is connected to your device to do so you can go to the [Espruino IDE](https://www.espruino.com/ide/) and click on the connect icon (top right corner) then when the serial ports are listed plug and unplug your device and notice what serial port is added/removed
+
+You'll need that to the right of the "--port" part of the script you'll be running which will be [flash.sh](./flash.sh) or [flash.bat](./flash.bat) depending on your decide.<br>
+
+Here's an example of what I had to run on my 2014 Macbook Air 11" (yeah...jelous???) that allowed me to flash my ESP8266 in 2022
+```
+sudo ./esptool --port  /dev/cu.usbserial-1410 --baud 460800 write_flash --flash_freq 80m --flash_mode dio --flash_size 4MB 0x0000 espruino_2v16_esp8266_4mb_combined_4096.bin 
+```
+
+## Official Espruino Documentation and Examples:
+- [Fancy Examples](https://www.espruino.com/Tutorials)
+- [Individual API Docs](https://www.espruino.com/Reference#software)
+- [Basic Button](https://www.espruino.com/Button)
+- [Basic Blinky light (remember our LED1 => "new Pin(4)" )](https://www.espruino.com/Flashing+Lights)
+- [Official Espruino ESP8266 FAQ](https://www.espruino.com/EspruinoESP8266)
+- [NodeMCU Faq for some ESP8266 boards](http://www.espruino.com/Reference#t_NodeMCU)
+
+### The official Slides
+[Official slides](https://docs.google.com/presentation/d/1iO17lf9EuHo49y0Dhbg-cbcTZwh_rV7azII3923GJf4/edit?usp=sharing)
